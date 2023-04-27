@@ -8,7 +8,7 @@ services:
             - ./docker/dovecot/volumes/passwd:/etc/dovecot/passwd:ro
         expose:
             - 12345
-    amavis:
+    amavisd:
         build:
             context: docker/amavisd/build_context
         volumes:
