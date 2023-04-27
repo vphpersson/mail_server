@@ -58,6 +58,12 @@ services:
             - ./docker/postfix/volumes/privkey.pem:/etc/postfix/privkey.pem:ro
             - socket_volume:/socket_volume
             - transcript_volume:/transcript_volume
+        depends_on:
+            - dovecot
+            - amavisd
+            - log_milter
+            - opendkim
+            - opendmarc
         restart: always
 volumes:
     socket_volume: {}
