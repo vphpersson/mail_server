@@ -1,6 +1,6 @@
 FROM archlinux
 
-RUN pacman -Syu --noconfirm && pacman -S --noconfirm amavisd-new && useradd -s /usr/bin/nologin amavis
+RUN pacman -Syu --noconfirm && pacman -S --noconfirm amavisd-new
 
 USER amavis
 
