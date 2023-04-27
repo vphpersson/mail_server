@@ -1,0 +1,62 @@
+version: "3.3"
+
+services:
+    dovecot:
+        image: dovecot
+        volumes:
+            - ./docker/dovecot/volumes/dovecot.conf:/etc/dovecot.conf:ro
+            - ./docker/dovecot/volumes/passwd:/etc/dovecot/passwd:ro
+        expose:
+            - 12345
+    amavis:
+        build:
+            context: docker/amavisd/build_context
+        volumes:
+            - ./docker/amavisd/volumes/amavisd.conf:/etc/amavisd/amavisd.conf:ro
+        expose:
+            - 10024
+            - 10026
+    log_milter:
+        build:
+            context: ./docker/log_milter/build_context
+            args:
+                PYTHON_VERSION: 3.11
+        environment:
+            - LOG_MILTER_SOCKET_PATH=/socket_volume/log_milter_socket
+            - LOG_MILTER_TRANSCRIPT_DIRECTORY=/transcript_volume
+        volumes:
+            - socket_volume:/socket_volume
+            - transcript_volume:/transcript_volume
+    opendkim:
+        build:
+            context: ./docker/opendkim/build_context
+        volumes:
+            - ./docker/opendkim/volumes/opendkim.conf:/etc/opendkim/opendkim.conf
+            - ./docker/opendkim/volumes/key.private:/etc/opendkim/key.private
+        expose:
+            - 8891
+    opendmarc:
+        build:
+            context: ./docker/opendmarc/build_context
+        volumes:
+            - ./docker/opendmarc/volumes/opendmarc.conf:/etc/opendmarc/opendmarc.conf
+        expose:
+            - 8893
+    postfix:
+        build:
+            context: ./docker/postfix/build_context
+            args:
+                POSTFIX_VERSION: 3.8.0
+        ports:
+            - "25:25"
+        volumes:
+            - ./docker/postfix/volumes/master.cf:/etc/postfix/master.cf:ro
+            - ./docker/postfix/volumes/main.cf:/etc/postfix/main.cf:ro
+            - ./docker/postfix/volumes/submission_header_checks:/etc/postfix/submission_header_checks:ro
+            - ./docker/postfix/volumes/aliases:/etc/aliases:ro
+            - socket_volume:/socket_volume
+            - transcript_volume:/transcript_volume
+        restart: always
+volumes:
+    socket_volume: {}
+    transcript_volume: {}

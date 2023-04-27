@@ -1,0 +1,3 @@
+[submodule "docker/log_milter/build_context/log_milter"]
+	path = docker/log_milter/build_context/log_milter
+	url = https://github.com/vphpersson/log_milter.git
