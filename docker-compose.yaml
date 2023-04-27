@@ -55,7 +55,7 @@ services:
             - ./docker/postfix/volumes/submission_header_checks:/etc/postfix/submission_header_checks:ro
             - ./docker/postfix/volumes/aliases:/etc/aliases:ro
             - ./docker/postfix/volumes/fullchain.pem:/etc/postfix/fullchain.pem:ro
-            - ./docker/postfix/volumes/privkey.pem:/etcpostfix/privkey.pem:ro
+            - ./docker/postfix/volumes/privkey.pem:/etc/postfix/privkey.pem:ro
             - socket_volume:/socket_volume
             - transcript_volume:/transcript_volume
         restart: always
