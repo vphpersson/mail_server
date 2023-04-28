@@ -26,8 +26,8 @@ services:
             - LOG_MILTER_TRANSCRIPT_DIRECTORY=/transcript_volume
             - LOG_MILTER_LOG_PATH=/var/log/log_milter/log_milter.log
         volumes:
-            - socket_volume:/socket_volume
-            - transcript_volume:/transcript_volume
+            - ./docker/postfix/volumes/socket_volume:/socket_volume
+            - ./docker/postfix/volumes/transcript_volume:/transcript_volume
             - ./docker/log_milter/volumes/logs:/var/log/log_milter
     opendkim:
         build:
@@ -58,8 +58,8 @@ services:
             - ./docker/postfix/volumes/aliases:/etc/aliases:ro
             - ./docker/postfix/volumes/fullchain.pem:/etc/postfix/fullchain.pem:ro
             - ./docker/postfix/volumes/privkey.pem:/etc/postfix/privkey.pem:ro
-            - socket_volume:/socket_volume
-            - transcript_volume:/transcript_volume
+            - ./docker/postfix/volumes/socket_volume:/socket_volume
+            - ./docker/postfix/volumes/transcript_volume:/transcript_volume
         expose:
             - 10027
         depends_on:
