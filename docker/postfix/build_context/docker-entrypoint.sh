@@ -6,7 +6,7 @@ done
 
 regex='^.+ postfix/smtpd\[[0-9]+\]: \[([^]]+)\]:[0-9]+ [<>] [^[]+\[([^]]+)\]:([0-9]+): (.+)$'
 
-postalias /etc/postfix/aliases
+postalias /etc/aliases
 new aliases
 postfix reload
 
