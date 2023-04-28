@@ -24,9 +24,11 @@ services:
         environment:
             - LOG_MILTER_SOCKET_PATH=/socket_volume/log_milter_socket
             - LOG_MILTER_TRANSCRIPT_DIRECTORY=/transcript_volume
+            - LOG_MILTER_LOG_PATH=/var/log/log_milter/log_milter.log
         volumes:
             - socket_volume:/socket_volume
             - transcript_volume:/transcript_volume
+            - ./docker/log_milter/volumes/logs:/var/log/log_milter
     opendkim:
         build:
             context: ./docker/opendkim/build_context
