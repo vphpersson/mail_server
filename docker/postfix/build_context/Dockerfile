@@ -29,8 +29,6 @@ RUN curl "https://ftpmirror1.infania.net/mirror/postfix-release/official/postfix
     && chmod +x ./postfix-install \
     && ./postfix-install -non-interactive
 
-USER postfix
-
 COPY ./docker-entrypoint.sh .
 
 ENTRYPOINT [ "./docker-entrypoint.sh" ]
