@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+for postfix_user in ${POSTFIX_USERS}; do
+    useradd --shell /usr/bin/nologin "$postfix_user"
+done
+
 regex='^.+ postfix/smtpd\[[0-9]+\]: \[([^]]+)\]:[0-9]+ [<>] [^[]+\[([^]]+)\]:([0-9]+): (.+)$'
 
 postalias /etc/postfix/aliases
