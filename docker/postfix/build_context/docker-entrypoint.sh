@@ -7,6 +7,8 @@ done
 regex='^.+ postfix/smtpd\[[0-9]+\]: \[([^]]+)\]:[0-9]+ [<>] [^[]+\[([^]]+)\]:([0-9]+): (.+)$'
 
 postalias /etc/postfix/aliases
+new aliases
+postfix reload
 
 postfix start-fg | tee /dev/stderr | while IFS= read line; do
     if [[ $line =~ $regex ]]; then
