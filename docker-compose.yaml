@@ -12,7 +12,7 @@ services:
         build:
             context: docker/amavisd/build_context
         volumes:
-            - ./docker/amavisd/volumes/amavisd.conf:/etc/amavisd/amavisd.conf:ro
+            - ./docker/amavisd/volumes/amavisd.conf:/etc/amavisd.conf:ro
         expose:
             - 10024
             - 10026
