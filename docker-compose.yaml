@@ -55,7 +55,7 @@ services:
             - ./docker/postfix/volumes/master.cf:/etc/postfix/master.cf:ro
             - ./docker/postfix/volumes/main.cf:/etc/postfix/main.cf:ro
             - ./docker/postfix/volumes/submission_header_checks:/etc/postfix/submission_header_checks:ro
-            - ./docker/postfix/volumes/aliases:/etc/aliases:ro
+            - ./docker/postfix/volumes/aliases:/etc/postfix/aliases:ro
             - ./docker/postfix/volumes/fullchain.pem:/etc/postfix/fullchain.pem:ro
             - ./docker/postfix/volumes/privkey.pem:/etc/postfix/privkey.pem:ro
             - ./docker/postfix/volumes/socket_volume:/socket_volume
