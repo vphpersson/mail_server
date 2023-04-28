@@ -4,7 +4,7 @@ services:
     dovecot:
         image: dovecot/dovecot
         volumes:
-            - ./docker/dovecot/volumes/dovecot.conf:/etc/dovecot.conf:ro
+            - ./docker/dovecot/volumes/dovecot.conf:/etc/dovecot/dovecot.conf:ro
             - ./docker/dovecot/volumes/passwd:/etc/dovecot/passwd:ro
         expose:
             - 12345
