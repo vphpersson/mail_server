@@ -58,6 +58,8 @@ services:
             - ./docker/postfix/volumes/privkey.pem:/etc/postfix/privkey.pem:ro
             - socket_volume:/socket_volume
             - transcript_volume:/transcript_volume
+        expose:
+            - 10027
         depends_on:
             - dovecot
             - amavisd

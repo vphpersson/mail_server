@@ -4,4 +4,4 @@ RUN pacman -Syu --noconfirm && pacman -S --noconfirm opendkim && useradd -s /usr
 
 USER opendkim
 
-CMD ["opendkim", "-f"]
+CMD ["opendkim", "-f", "-x", "/etc/opendkim/opendkim.conf"]
