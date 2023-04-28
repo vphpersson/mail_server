@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
     dovecot:
-        image: dovecot
+        image: dovecot/dovecot
         volumes:
             - ./docker/dovecot/volumes/dovecot.conf:/etc/dovecot.conf:ro
             - ./docker/dovecot/volumes/passwd:/etc/dovecot/passwd:ro
@@ -31,8 +31,8 @@ services:
         build:
             context: ./docker/opendkim/build_context
         volumes:
-            - ./docker/opendkim/volumes/opendkim.conf:/etc/opendkim/opendkim.conf
-            - ./docker/opendkim/volumes/key.private:/etc/opendkim/key.private
+            - ./docker/opendkim/volumes/opendkim.conf:/etc/opendkim/opendkim.conf:ro
+            - ./docker/opendkim/volumes/key.private:/etc/opendkim/key.private:ro
         expose:
             - 8891
     opendmarc:
