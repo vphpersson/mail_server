@@ -16,6 +16,8 @@ postfix start-fg | tee /dev/stderr | while IFS= read line; do
             continue
         fi
 
+        umask 0000
+
         printf '%s\n' "$message" >> "/transcript_volume/${client_addr}_${client_port}"
     fi
 done
