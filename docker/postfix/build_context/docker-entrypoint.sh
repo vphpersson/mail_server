@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-for postfix_user in ${POSTFIX_USERS}; do
-    useradd --shell /usr/bin/nologin "$postfix_user"
-done
-
 regex='^.+ postfix/smtpd\[[0-9]+\]: \[([^]]+)\]:[0-9]+ [<>] [^[]+\[([^]]+)\]:([0-9]+): (.+)$'
 
 newaliases
@@ -20,6 +16,6 @@ postfix start-fg | tee /dev/stderr | while IFS= read line; do
             continue
         fi
 
-        printf '%s\n' "$message" >> "${client_addr}_${client_port}"
+        printf '%s\n' "$message" >> "/transcript_volume/${client_addr}_${client_port}"
     fi
 done
