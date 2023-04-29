@@ -6,7 +6,11 @@ services:
         volumes:
             - ./docker/dovecot/volumes/dovecot.conf:/etc/dovecot/dovecot.conf:ro
             - ./docker/dovecot/volumes/passwd:/etc/dovecot/passwd:ro
+            - ./docker/dovecot/volumes/maildir:/var/mail/users
+            - ./docker/postfix/volumes/fullchain.pem:/etc/dovecot/dovecot.pem:ro
+            - ./docker/postfix/volumes/privkey.pem:/etc/dovecot/dovecot.key:ro
         expose:
+            - 24
             - 12345
     amavisd:
         build:
