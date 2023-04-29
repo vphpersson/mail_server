@@ -9,6 +9,8 @@ services:
             - ./docker/dovecot/volumes/maildir:/var/mail/users
             - ./docker/postfix/volumes/fullchain.pem:/etc/dovecot/dovecot.pem:ro
             - ./docker/postfix/volumes/privkey.pem:/etc/dovecot/dovecot.key:ro
+        ports:
+            - "993:993"
         expose:
             - 24
             - 12345
@@ -55,6 +57,7 @@ services:
                 POSTFIX_VERSION: 3.8.0
         ports:
             - "25:25"
+            - "587:587"
         volumes:
             - ./docker/postfix/volumes/master.cf:/etc/postfix/master.cf:ro
             - ./docker/postfix/volumes/main.cf:/etc/postfix/main.cf:ro
