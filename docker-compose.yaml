@@ -65,6 +65,7 @@ services:
             - ./docker/postfix/volumes/socket_volume:/socket_volume
             - ./docker/postfix/volumes/transcript_volume:/transcript_volume
         expose:
+            - 10025
             - 10027
         depends_on:
             - dovecot
