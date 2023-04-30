@@ -14,6 +14,10 @@ RUN curl "https://ftpmirror1.infania.net/mirror/postfix-release/official/postfix
         --expression='248s!^!//!' \
         --expression='249s/^.\+$/msg_info("[%s]:%s > %s: %s", state->dest_addr, state->dest_port, state->namaddr, cp);/' \
         /postfix/src/smtpd/smtpd_chat.c \
+    && sed --inplace \
+        --expression='203s!^!//!' \
+        --expression='277s!^!//!' \
+        /postfix/src/smtp/smtp_chat.c \
     && make makefiles  \
         command_directory=/usr/bin \
         daemon_directory=/usr/lib/postfix/bin \

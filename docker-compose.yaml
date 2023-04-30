@@ -44,8 +44,7 @@ services:
         expose:
             - 8891
     opendmarc:
-        build:
-            context: ./docker/opendmarc/build_context
+        image: instrumentisto/opendmarc
         volumes:
             - ./docker/opendmarc/volumes/opendmarc.conf:/etc/opendmarc/opendmarc.conf
         expose:
