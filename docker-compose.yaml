@@ -65,6 +65,7 @@ services:
             - ./docker/postfix/volumes/aliases:/etc/postfix/aliases:ro
             - ./docker/postfix/volumes/fullchain.pem:/etc/postfix/fullchain.pem:ro
             - ./docker/postfix/volumes/privkey.pem:/etc/postfix/privkey.pem:ro
+            - ./docker/postfix/volumes/users.db:/etc/postfix/users.db:ro
             - ./docker/postfix/volumes/socket_volume:/socket_volume
             - ./docker/postfix/volumes/transcript_volume:/transcript_volume
         expose:
