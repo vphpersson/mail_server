@@ -36,11 +36,11 @@ services:
             - ./docker/postfix/volumes/transcript_volume:/transcript_volume
             - ./docker/log_milter/volumes/logs:/var/log/log_milter
     opendkim:
-        build:
-            context: ./docker/opendkim/build_context
+        image: instrumentisto/opendkim
         volumes:
             - ./docker/opendkim/volumes/opendkim.conf:/etc/opendkim/opendkim.conf:ro
             - ./docker/opendkim/volumes/key.private:/etc/opendkim/key.private:ro
+            - ./docker/opendkim/volumes/internal_hosts:/etc/opendkim/internal_hosts:ro
         expose:
             - 8891
     opendmarc:
