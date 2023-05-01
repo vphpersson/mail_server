@@ -14,14 +14,14 @@ services:
         expose:
             - 24
             - 12345
-    amavisd:
-        build:
-            context: docker/amavisd/build_context
-        volumes:
-            - ./docker/amavisd/volumes/amavisd.conf:/etc/amavisd.conf:ro
-        expose:
-            - 10024
-            - 10026
+#    amavisd:
+#        build:
+#            context: docker/amavisd/build_context
+#        volumes:
+#            - ./docker/amavisd/volumes/amavisd.conf:/etc/amavisd.conf:ro
+#        expose:
+#            - 10024
+#            - 10026
     log_milter:
         build:
             context: ./docker/log_milter/build_context
@@ -72,7 +72,7 @@ services:
             - 10027
         depends_on:
             - dovecot
-            - amavisd
+#            - amavisd
             - log_milter
             - opendkim
             - opendmarc
