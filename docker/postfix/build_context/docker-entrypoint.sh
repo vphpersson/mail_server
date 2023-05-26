@@ -3,8 +3,8 @@
 REGEX='^.+ postfix/smtpd\[[0-9]+\]: \[([^]]+)\]:[0-9]+ [<>] [^[]+\[([^]]+)\]:([0-9]+): (.+)$'
 
 if [[ -z "$POSTFIX_HOSTNAME" ]]; then
-  echo 'The environment variable POSTFIX_HOSTNAME must be set.' 1>&2
-  exit 1
+    echo 'The environment variable POSTFIX_HOSTNAME must be set.' 1>&2
+    exit 1
 fi
 
 cp /etc/postfix/main_host.cf /etc/postfix/main.cf
