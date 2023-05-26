@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
 
-regex='^.+ postfix/smtpd\[[0-9]+\]: \[([^]]+)\]:[0-9]+ [<>] [^[]+\[([^]]+)\]:([0-9]+): (.+)$'
+if [[ -z "$POSTFIX_HOSTNAME" ]]; then
+  echo 'The environment variable POSTFIX_HOSTNAME must be set.' 1>&2
+  exit 1
+fi
+
+echo "$POSTFIX_HOSTNAME" > /etc/hostname
+
+REGEX='^.+ postfix/smtpd\[[0-9]+\]: \[([^]]+)\]:[0-9]+ [<>] [^[]+\[([^]]+)\]:([0-9]+): (.+)$'
 
 newaliases
 
 postfix start-fg | tee /dev/stderr | while IFS= read line; do
-    if [[ $line =~ $regex ]]; then
+    if [[ $line =~ $REGEX ]]; then
         dest_addr="${BASH_REMATCH[1]}"
         client_addr="${BASH_REMATCH[2]}"
         client_port="${BASH_REMATCH[3]}"
