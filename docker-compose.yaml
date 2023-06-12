@@ -46,7 +46,8 @@ services:
     opendmarc:
         image: instrumentisto/opendmarc
         volumes:
-            - ./docker/opendmarc/volumes/opendmarc.conf:/etc/opendmarc/opendmarc.conf
+            - ./docker/opendmarc/volumes/opendmarc.conf:/etc/opendmarc/opendmarc.conf:ro
+            - ./docker/opendmarc/volumes/public_suffix_list.dat:/etc/opendmarc/public_suffix_list.dat:ro
         expose:
             - 8893
     postfix:
