@@ -722,7 +722,7 @@ smtpd_client_port_logging = yes
 maillog_file = /dev/stdout
 
 # Make more symbols available to the milter.
-milter_connect_macros = j {daemon_name} {daemon_addr} {daemon_port} {client_addr} {client_port} v _
+milter_connect_macros = j {daemon_name} {daemon_addr} {daemon_port} {client_addr} {client_port} {client_name} v _
 
 # Let Dovecot handle the mailbox delivery.
 mailbox_transport=lmtp:inet:dovecot:24
