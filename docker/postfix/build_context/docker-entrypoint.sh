@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-REGEX='^.+ postfix/smtpd\[[0-9]+\]: \[([^]]+)\]:[0-9]+ [<>] [^[]+\[([^]]+)\]:([0-9]+): (.+)$'
+REGEX='^.+ postfix(/submission)?/smtpd\[[0-9]+\]: \[([^]]*)\]:[0-9]+ [<>] [^[]+\[([^]]+)\]:([0-9]+): (.+)$'
 
 if [[ -z "$POSTFIX_HOSTNAME" ]]; then
     echo 'The environment variable POSTFIX_HOSTNAME must be set.' 1>&2
@@ -14,11 +14,11 @@ postconf -e "myhostname = ${POSTFIX_HOSTNAME}"
 
 postfix start-fg | tee /dev/stderr | while IFS= read line; do
     if [[ $line =~ $REGEX ]]; then
-        dest_addr="${BASH_REMATCH[1]}"
-        client_addr="${BASH_REMATCH[2]}"
-        client_port="${BASH_REMATCH[3]}"
+        dest_addr="${BASH_REMATCH[2]}"
+        client_addr="${BASH_REMATCH[3]}"
+        client_port="${BASH_REMATCH[4]}"
 
-        message="${BASH_REMATCH[4]}"
+        message="${BASH_REMATCH[5]}"
 
         if [[ $dest_addr == '127.0.0.1' ]] || [[ $client_addr = '127.0.0.1' ]]; then
             continue

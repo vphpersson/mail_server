@@ -721,5 +721,12 @@ smtpd_client_port_logging = yes
 # Log file path.
 maillog_file = /dev/stdout
 
+# Make more symbols available to the milter.
+milter_connect_macros = j {daemon_name} {daemon_addr} {daemon_port} {client_addr} {client_port} v _
+
 # Let Dovecot handle the mailbox delivery.
 mailbox_transport=lmtp:inet:dovecot:24
+
+# Make sure bounce messages are also signed.
+internal_mail_filter_classes = bounce
+non_smtpd_milters = inet:opendkim:8891,unix:/socket_volume/log_milter_socket
