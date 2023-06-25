@@ -22,7 +22,7 @@ smtp      inet  n       -       n       -       -       smtpd
       -o smtpd_data_restrictions=reject_unauth_pipelining,permit
       # Allow clients to use use TLS encryption.
       -o smtpd_tls_security_level=may
-      # Set up SMTP + mail logging, DKIM verification, DMARC varification
+      # Set up SMTP + mail logging, DKIM verification, DMARC verification
       -o smtpd_milters=unix:/socket_volume/log_milter_socket,inet:opendkim:8891,inet:opendmarc:8893
       # Let mail through even if any of the milters fail.
       -o milter_default_action=accept
